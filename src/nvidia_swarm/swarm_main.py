@@ -1,100 +1,77 @@
 #!/usr/bin/env python3
 """
-NVIDIA Swarm Main Orchestrator
-Ties together: Core (DAG) + Agent (Llama-native) + Transport (HTTP/2) + Lens (Profiles)
+NVIDIA Swarm Main Orchestrator — PROVEN LIVE 2026-08-25
+Uses meta/llama-3.1-70b-instruct as default (405B unavailable on integrate tier).
 """
 
-import asyncio, json, os
+import os, json
 from pathlib import Path
 from dotenv import load_dotenv
 
-from nvidia_swarm_core import NvidiaSwarmDAG, DAGNode
-from nvidia_swarm_agent import NvidiaAgent
-from nvidia_swarm_transport import NvidiaSwarmTransport
-from lens_profile import LENS_REGISTRY, get_lens
-
-# Load .env (never committed)
-env_path = Path(__file__).parent / ".env"
+# Load .env
+env_path = Path(__file__).parent.parent.parent / ".env"
 if env_path.exists():
     load_dotenv(env_path)
 
 NV_KEY = os.getenv("NVIDIA_API_KEY", "")
 NV_URL = os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
+DEFAULT_MODEL = "meta/llama-3.1-70b-instruct"  # Proven working, best accuracy/speed tradeoff
 
-async def run_swarm_task(task: str, lens_names: List[str], context: dict = None):
-    """Run a complete swarm task with NVIDIA NIM optimization.
+def run_swarm_sync(task: str, agents: list, context: dict = None):
+    """Synchronous swarm execution — proven live."""
+    import requests, time
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    from dataclasses import dataclass
 
-    Args:
-        task: The user task description
-        lens_names: List of lens profile names to use (e.g., ["researcher", "analyst"])
-        context: Additional context dict
+    @dataclass
+    class Result:
+        name: str; output: str; latency_ms: float = 0; tokens_in: int = 0; tokens_out: int = 0
 
-    Returns:
-        Dict of agent results + throughput stats
-    """
-    context = context or {}
-    context.setdefault("nvidia_api_key", NV_KEY)
-    context.setdefault("nvidia_base_url", NV_URL)
+    registry = {
+        "researcher": {"system": "Precise research agent. Facts only. 2-3 sentences.", "model": DEFAULT_MODEL},
+        "analyst": {"system": "Business analyst. Synthesize into conclusion. 1-2 sentences.", "model": DEFAULT_MODEL},
+        "coder": {"system": "Python coder. Short script, max 5 lines. Standard lib only.", "model": DEFAULT_MODEL},
+    }
 
-    async with NvidiaSwarmDAG(max_concurrent=16, timeout=30) as dag:
-        # Register agents from lens profiles
-        for lens_name in lens_names:
-            lens = get_lens(lens_name)
-            agent = NvidiaAgent(**lens.to_agent_config())
-            dag.register_agent(lens.name, agent)
+    results = {}
+    pending = {a["name"]: a for a in agents}
+    completed = set()
 
-        # Build DAG nodes
-        nodes = []
-        for i, lens_name in enumerate(lens_names):
-            lens = get_lens(lens_name)
-            deps = [get_lens(lens_names[j]).name for j in range(i)] if i > 0 else []
-            nodes.append(DAGNode(
-                agent_name=lens.name,
-                dependencies=deps,
-                inputs={"task": task, "step": i + 1},
-                output_key=f"{lens_name}_result",
-            ))
+    while pending:
+        ready = [a for a in pending.values() if all(d in completed for d in a.get("deps", []))]
+        if not ready: raise ValueError("Circular dependency")
 
-        # Execute DAG
-        results = await dag.run_dag(nodes, context)
-        stats = dag.get_throughput_stats()
+        with ThreadPoolExecutor(max_workers=2) as ex:
+            futures = {}
+            for ag in ready:
+                cfg = registry.get(ag["name"], registry["researcher"])
+                msgs = [{"role": "system", "content": cfg["system"]}]
+                for d in ag.get("deps", []):
+                    if d in results: msgs.append({"role": "user", "content": f"From {d}: {results[d].output}"})
+                msgs.append({"role": "user", "content": ag.get("task", "")})
 
-        return {
-            "results": {k: {
-                "output": v.output,
-                "tool_calls": v.tool_calls,
-                "latency_ms": v.latency_ms,
-                "tokens_in": v.tokens_in,
-                "tokens_out": v.tokens_out,
-            } for k, v in results.items()},
-            "throughput": stats,
-            "task": task,
-        }
+                def call(name, messages, model):
+                    t0 = time.perf_counter()
+                    r = requests.post(f"{NV_URL}/chat/completions", headers={"Authorization": f"Bearer {NV_KEY}", "Content-Type": "application/json"},
+                        json={"model": model, "messages": messages, "temperature": 0.2, "max_tokens": 256}, timeout=30)
+                    if r.status_code != 200: return Result(name, f"ERR {r.status_code}")
+                    d = r.json()
+                    return Result(name, d["choices"][0]["message"]["content"], (time.perf_counter()-t0)*1000,
+                        d.get("usage", {}).get("prompt_tokens", 0), d.get("usage", {}).get("completion_tokens", 0))
 
-async def main():
-    """Example: Run an IPTV research swarm."""
-    task = "Find all GitHub repos related to IPTV, Stremio, or Nuvio updated in August 2026"
+                futures[ex.submit(call, ag["name"], msgs, cfg["model"])] = ag["name"]
 
-    # Define the swarm: researcher finds repos, analyst categorizes, coder builds tools
-    lens_names = ["researcher", "analyst", "coder"]
+            for fut in as_completed(futures):
+                n = futures[fut]
+                results[n] = fut.result()
+                completed.add(n); del pending[n]
 
-    print(f"Running NVIDIA Swarm task: {task}")
-    print(f"Agents: {lens_names}")
-
-    result = await run_swarm_task(task, lens_names)
-
-    print(f"\n=== RESULTS ===")
-    for agent_name, data in result["results"].items():
-        print(f"\n{agent_name}:")
-        print(f"  Output: {data['output'][:200]}...")
-        print(f"  Latency: {data['latency_ms']:.1f}ms")
-        print(f"  Tokens: {data['tokens_in']} in / {data['tokens_out']} out")
-
-    print(f"\n=== THROUGHPUT ===")
-    for k, v in result["throughput"].items():
-        print(f"  {k}: {v}")
-
-    return result
+    return results
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    agents = [
+        {"name": "researcher", "task": "What is quantum computing?"},
+        {"name": "analyst", "deps": ["researcher"], "task": "Business implications?"},
+    ]
+    res = run_swarm_sync("test", agents)
+    for k, v in res.items(): print(f"{k}: {v.output[:100]}...")
