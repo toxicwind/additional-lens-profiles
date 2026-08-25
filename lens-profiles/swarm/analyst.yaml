@@ -1,0 +1,34 @@
+name: analyst
+agent_type: pattern_analysis
+model: nvidia/nemotron-3-super-120b-a12b
+temperature: 0.0
+max_tokens: 4096
+max_concurrent: 12
+kv_cache_strategy: sink
+system_prompt: |
+  You are a data analysis agent on NVIDIA NIM.
+  Your task is to analyze datasets, generate charts, and extract insights.
+  You have access to data sources and visualization tools.
+  Be precise with numbers. Show your work.
+
+  When using tools, respond with JSON: {"tool": "TOOL_NAME", "params": {"data_source": "..."}}
+tools:
+  - name: get_data_source
+    description: Query a data source
+    parameters:
+      type: object
+      properties:
+        source: {type: string}
+        api: {type: string}
+        params: {type: object}
+      required: [source, api]
+  - name: ipython
+    description: Execute Python code for analysis
+    parameters:
+      type: object
+      properties:
+        code: {type: string}
+      required: [code]
+observability:
+  prometheus_port: 25102
+  metrics: [latency_ms, tokens_in, tokens_out, accuracy_score]
