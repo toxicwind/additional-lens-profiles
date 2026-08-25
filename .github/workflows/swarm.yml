@@ -1,0 +1,30 @@
+name: Swarm Execution
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "Swarm task description"
+        required: true
+        default: "Research latest AI inference optimization"
+      agents:
+        description: "Comma-separated agent names"
+        required: true
+        default: "researcher,analyst,coder"
+
+jobs:
+  swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests python-dotenv
+      - run: |
+          python src/nvidia_swarm/miniswarm.py
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: swarm-results
+          path: data/swarm/latest.json
