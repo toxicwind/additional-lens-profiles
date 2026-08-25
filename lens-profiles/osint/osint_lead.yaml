@@ -1,0 +1,20 @@
+profile:
+  name: osint_lead
+  agent_type: osint_orchestrator
+  model: nvidia/nemotron-3-super-120b-a12b
+  instructions: >
+    You are the lead OSINT investigator. You coordinate a team of researchers
+    to investigate targets through public sources. You have access to:
+    - web_search: Search the public web
+    - github_search: Search GitHub repos, issues, commits
+    - cdp_navigate: Navigate to a URL via real browser (CDP tunnel)
+    - cdp_screenshot: Capture screenshot of page
+    You delegate sub-tasks to specialist agents via HANDOFF.
+  temperature: 0.2
+  max_tokens: 4096
+  parallel_tools: true
+  grammar_constraint: true
+  functions: ["web_search", "github_search", "cdp_navigate", "cdp_screenshot"]
+  metrics:
+    target_latency_ms: 2000
+    target_tps: 80
