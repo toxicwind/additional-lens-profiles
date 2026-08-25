@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-25T13:24:29.592921",
+  "total_aug2026_repos": 324,
+  "nuvio_count": 33,
+  "stremio_count": 106,
+  "iptv_count": 185,
+  "with_m3u": 1,
+  "with_manifest": 0,
+  "with_keys": 0,
+  "top_starred": [
+    {
+      "repo": "Guovin/iptv-api",
+      "stars": 24974,
+      "pushed": "2026-08-21T01:03:29Z"
+    },
+    {
+      "repo": "4gray/iptvnator",
+      "stars": 6900,
+      "pushed": "2026-08-24T22:29:13Z"
+    },
+    {
+      "repo": "dongyubin/IPTV",
+      "stars": 4345,
+      "pushed": "2026-08-20T07:19:05Z"
+    },
+    {
+      "repo": "Viren070/AIOStreams",
+      "stars": 2571,
+      "pushed": "2026-08-25T00:45:55Z"
+    },
+    {
+      "repo": "Stremio/stremio-core",
+      "stars": 2285,
+      "pushed": "2026-08-24T23:23:16Z"
+    },
+    {
+      "repo": "taksssss/iptv-tool",
+      "stars": 1107,
+      "pushed": "2026-08-17T04:58:34Z"
+    },
+    {
+      "repo": "LITUATUI/M3UPT",
+      "stars": 625,
+      "pushed": "2026-08-25T04:14:59Z"
+    },
+    {
+      "repo": "EdenwareApps/Megacubo",
+      "stars": 597,
+      "pushed": "2026-08-23T20:35:37Z"
+    },
+    {
+      "repo": "euzu/tuliprox",
+      "stars": 539,
+      "pushed": "2026-08-24T18:41:14Z"
+    },
+    {
+      "repo": "akiralereal/iptv",
+      "stars": 436,
+      "pushed": "2026-08-24T03:44:57Z"
+    }
+  ]
+}
