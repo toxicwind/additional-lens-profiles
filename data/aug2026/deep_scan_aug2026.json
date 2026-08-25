@@ -1,0 +1,121 @@
+{
+  "manifests": [
+    {
+      "repo": "yowmamasita/usa-tv-next",
+      "manifest_url": "https://raw.githubusercontent.com/yowmamasita/usa-tv-next/main/manifest.json",
+      "manifest_name": "USA TV Next",
+      "manifest_id": "community.usa-tv-next",
+      "manifest_version": "2.1.0",
+      "manifest_types": [
+        "tv"
+      ],
+      "manifest_catalogs": 1,
+      "manifest_resources": [
+        "catalog",
+        "stream",
+        "meta"
+      ],
+      "status": 200
+    },
+    {
+      "repo": "esp4ce/stremio-letterboxd-addon",
+      "manifest_url": "https://raw.githubusercontent.com/esp4ce/stremio-letterboxd-addon/main/manifest.json",
+      "manifest_name": "Stremboxd",
+      "manifest_id": "community.stremboxd",
+      "manifest_version": "1.0.0",
+      "manifest_types": [
+        "movie"
+      ],
+      "manifest_catalogs": 3,
+      "manifest_resources": [
+        "catalog",
+        {
+          "name": "stream",
+          "types": [
+            "movie"
+          ]
+        }
+      ],
+      "status": 200
+    },
+    {
+      "repo": "Gowaru/gowaru-nuvio-providers",
+      "manifest_url": "https://raw.githubusercontent.com/Gowaru/gowaru-nuvio-providers/main/manifest.json",
+      "manifest_name": "Gowaru's Repo",
+      "manifest_id": "",
+      "manifest_version": "1.2.0",
+      "manifest_types": [],
+      "manifest_catalogs": 0,
+      "manifest_resources": [],
+      "status": 200
+    },
+    {
+      "repo": "victorgveloso/animes-season-addon",
+      "manifest_url": "https://raw.githubusercontent.com/victorgveloso/animes-season-addon/main/manifest.json",
+      "manifest_name": "Animes' season",
+      "manifest_id": "animes-season-addon",
+      "manifest_version": "1.19.1",
+      "manifest_types": [
+        "movie",
+        "series"
+      ],
+      "manifest_catalogs": 4,
+      "manifest_resources": [
+        "catalog"
+      ],
+      "status": 200
+    }
+  ],
+  "m3u_playlists": [
+    {
+      "repo": "kl0wn/iptv",
+      "m3u_url": "https://raw.githubusercontent.com/kl0wn/iptv/main/index.m3u",
+      "m3u_size": 9161,
+      "m3u_preview": "#EXTM3U x-tvg-url=\"https://iptv-org.github.io/epg/guides/uk/sky.com.epg.xml,https://iptv-org.github.io/epg/guides/us-local/tvtv.us.epg.xml\"\n\n#EXTINF:-1 tvg-id=\"\"AhlulbaytTV.uk@SD\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://i.imgur.com/lNGJGjy.png\"\" group-title=\"Arabic\", Ahlulbayt TV\nhttps://cd198.anystream.uk:8082/hls/abtv3ng/index.m3u8\r\n#EXTINF:-1 tvg-id=\"\"AlbUKTV.uk@SD\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://i.imgur.com/TMg4Kxi.png\"\" group-title=\"Arabic\", Alb UKTV\nhttp://5.254.89.106/8794/index.m3u8\r\n#EXTINF:-1 tvg-id=\"\"AlHiwarTV.uk@SD\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://i.imgur.com/UjOxwdd.png\"\" group-title=\"Arabic\", Al Hiwar TV\nhttps://mn-nl.mncdn.com/alhiwar_live/smil:alhiwar.smil/playlist.m3u8\r\n#EXTINF:-1 tvg-id=\"\"ATNBanglaUK.uk@SD\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://i.imgur.com/vFpjggf.png\"\" group-title=\"Bangla\", ATN Bangla UK\nhttps://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/atnbanglauk-off.stream/playlist.m3u8\r\n#EXTINF:-1 tvg-id=\"\"BanglaVision.bd@SD\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://i.imgur.com/nCWgp38.png\"\" group-title=\"Bangla\", Bangla Vision\nhttps://tvsen5.aynaott.com/banglavision/index.m3u8\r\n#EXTINF:-1 tvg-id=\"\"BBCNews.uk@Europe\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png\"\" group-title=\"News\", BBC News\nhttps://pb-iiczlgfysam0q.akamaized.net/v1/amcnetworks_bbcnews_1/samsungheadend_us/latest/main/hls/playlist.m3u8\r\n#EXTINF:-1 tvg-id=\"\"BBCNews.uk@UK\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png\"\" group-title=\"News\", BBC News\nhttps://xemzi.short.gy/1000015\r\n#EXTINF:-1 tvg-id=\"\"BBCNews.uk@Africa\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png\"\" group-title=\"News\", BBC News\nhttps://vs-cmaf-push-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_news_channel_hd/hevc_iptv_mse_v0.mpd\r\n#EXTINF:-1 tvg-id=\"\"BBCNews.uk@AsiaPacific\"\" tvg-country=\"UK\" tvg-language=\"English\" tvg-logo=\"https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png\"\" group-title=\"News\", BBC News\nhttps://thinkkast.dpdns.org/thinkkast/bbcworld_news_sd/versiglia/index.m3u8\r",
+      "status": 200
+    },
+    {
+      "repo": "shidul100/Iptv",
+      "m3u_url": "https://raw.githubusercontent.com/shidul100/Iptv/main/playlist.m3u",
+      "m3u_size": 31584,
+      "m3u_preview": "#EXTM3U\n#EXTINF:-1 tvg-id=\"\" tvg-logo=\"https://static.wikia.nocookie.net/etv-gspn-bangla/images/6/6e/T_Sports_HD_logo_2021.png\" group-title=\"SPORTS\",T SPORTS\nhttps://mycoffeetime.net/play/tSDRdsaoGGQ2qYgRPDEe9q-qMIzoahbJArH3W3vOiEaB97nXMpWmLb0Ts759Tjsp/m3u8\n#EXTINF:-1 tvg-logo=\"https://assets-prod.services.toffeelive.com/f_png,w_300,q_85/ra2x_pQBrjBfS2_RWG9l/posters/795170c2-ec78-457e-9fa0-54a23d23361c.webp\" group-title=\"SPORTS\",Ten Cricket\nhttps://stream.ottplus.bd/live/ten_cricket_hd_abr/live/ten_cricket_hd_720/chunks.m3u8\n#EXTINF:-1 tvg-logo=\"https://abusaeeidx.github.io/Tv-Channel-Logo/CricHD/runded/38-by-xfireflix.png\" group-title=\"SPORTS\",Willow HD\nhttps://warm-caverns-48629-92fab798385f.herokuapp.com/https://d36r8jifhgsk5j.cloudfront.net/Willow_TV540p.m3u8\n#EXTINF:-1 tvg-logo=\"https://i.postimg.cc/yNQfGnnb/RLr-MBlm.png\" group-title=\"SPORTS\",Bein Sports\nhttp://premiumtvs.space/live/YqXTywueEV/damp2purchase/6625.ts\n#EXTINF:-1 tvg-id=\"\" tvg-logo=\"https://i.postimg.cc/yNQfGnnb/RLr-MBlm.png\" group-title=\"SPORTS\",Bein Sports xtra\nhttps://bein-esp-xumo.amagi.tv/playlistR720P.m3u8\n#EXTINF:-1 tvg-logo=\"https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-07-20/images_5704c544bcbe25521134b299a0298be7_playmist_ptv_sports_400x400.jpg\" group-title=\"SPORTS\",PTV Sports HD\nhttps://s1.itcnbd.live/PTV-Sports/tracks-v1a1/mono.m3u8?nocache=1785582200018\n#EXTINF:-1 tvg-logo=\"https://i.postimg.cc/QCKgdb09/20240822-230145.png\" group-title=\"BANGLADESH\",Somoy TV\nhttps://tvsen6.aynaott.com/4XcqdovJzbbC9WdJA9gk/index.m3u8\n#EXTINF:-1 tvg-logo=\"https://web.aynaott.com/storage/019dd92f-107c-7056-9e79-e5233f6e51d9/uploads/images/2026-06-24/3a36a406fcc9616cd0b32514bb29eb36.jpg\" group-title=\"BANGLADESH\",ATN Bangla\nhttps://tvsen5.aynaott.com/atnbangla/index.m3u8\n#EXTINF:-1 tvg-logo=\"https://tstatic.akash-go.com/cms-ui/images/custom-content/1739962961772.png\" group-title=\"BANGLADESH\",ATN News\nhttps://tvsen6.aynaott.com/da6WMXAk/index.m3u8\n#EXTINF:-1 tvg-logo=\"https://s3.aynaott.com/storage/28931315743beff50fc2c1312b1f8261\" group-title=\"BANGLADESH\",Channel I",
+      "status": 200
+    },
+    {
+      "repo": "time2shine/Rokon-IPTV",
+      "m3u_url": "https://raw.githubusercontent.com/time2shine/Rokon-IPTV/main/playlist.m3u",
+      "m3u_size": 168578,
+      "m3u_preview": "#EXTM3U\n#EXTINF:-1 tvg-id=\"akashaat.in\" tvg-logo=\"https://static.wikia.nocookie.net/etv-gspn-bangla/images/3/34/Aakash_Aath_logo_%282013%29.png\" group-title=\"Bangla\",Akash Aath\nhttps://cdn-4.pishow.tv/live/969/master.m3u8\n#EXTINF:-1 tvg-id=\"amarbangla.bd\" tvg-logo=\"https://amarbanglatv.in/wp-content/uploads/2026/07/Amar-Bangla-TV-logo-300x162.jpeg\" group-title=\"Bangla\",Amar Bangla\nhttps://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI/amarbanglatv.stream/playlist.m3u8\n#EXTINF:-1 tvg-id=\"Amar Digital TV\" tvg-logo=\"https://th.bing.com/th/id/OIP.ZSBINjQw_TEmElNoECErVQHaDL?rs=1&pid=ImgDetMain\" group-title=\"Bangla\",Amar Digital TV\nhttp://115.187.41.216:8080/hls/amardigital/index.m3u8\n#EXTINF:-1 tvg-id=\"ANANDATV.bd\" tvg-logo=\"https://static.wikia.nocookie.net/etv-gspn-bangla/images/b/b7/Ananda_TV_logo.png\" group-title=\"Bangla\",ANANDA TV HD\nhttps://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/anandatv.stream/live-orgin/anandatv.stream/playlist.m3u8\n#EXTINF:-1 tvg-id=\"asiantv.bd\" tvg-logo=\"https://yt3.googleusercontent.com/AKdtkYcJ5cbC1NNkbELbIarJgjbCxsyQ08rW-LAbtZ0F8KdDGutcTKLmRpdFf5hxtC_UrFpO=s160-c-k-c0x00ffffff-no-rj\" group-title=\"Bangla\",ASIAN TV\nhttps://tvsen6.aynaott.com/pKb5k6NnzxsKpWUs6E8M/index.m3u8\n#EXTINF:-1 tvg-id=\"atnbangla.bd\" tvg-logo=\"https://static.wikia.nocookie.net/logopedia/images/b/bd/Logo_of_ATN_Bangla.svg\" group-title=\"Bangla\",ATN BANGLA\nhttps://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/atnbd-8-org.stream/index.m3u8\n#EXTINF:-1 tvg-id=\"ATN Bangla UK\" tvg-logo=\"https://static.wikia.nocookie.net/logopedia/images/b/bd/Logo_of_ATN_Bangla.svg\" group-title=\"Bangla\",ATN Bangla UK\nhttps://app.ncare.live/live-orgin/atnbanglauk-off.stream/playlist.m3u8\n#EXTINF:-1 tvg-id=\"Ayna TV\" tvg-logo=\"https://i.ibb.co.com/5hy7S3wB/Ayna-TV.png\" group-title=\"Bangla\",Ayna TV\nhttps://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ayna.stream/tracks-v1a1/mono.m3u8\n#EXTINF:-1 tvg-id=\"banglatv.bd\" tvg-logo=\"https://upload.wikimedia.org/wikipedia/commons/6/69/Bangla_TV_logo.svg\" group-title=\"Bangla\",BANGLA TV\nhttps://tvsen6.aynaott.com/39ee93nUbCCmm5LsyD4t/index.m3u8\n#EXTINF:-1 tvg-id=\"banglavision.bd\" tvg-logo=\"https://www.bvnews24.com/media/common/newbvlogo.png\" group-title=\"Bangla\",BANGLA VISION",
+      "status": 200
+    },
+    {
+      "repo": "Ace550-Ramon/IPTV",
+      "m3u_url": "https://raw.githubusercontent.com/Ace550-Ramon/IPTV/main/tv.m3u",
+      "m3u_size": 1303118,
+      "m3u_preview": "#EXTM3U\n#EXTINF:0 tvg-id=\"cbskcbs.us\" tvg-logo=\"https://1000logos.net/wp-content/uploads/2016/11/CBS-Logo-500x281.png\" group-title=\"Local Channels (Not 24/7)\",KCBS-TV CBS 2 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/2637\n#EXTINF:0 tvg-logo=\"https://1000logos.net/wp-content/uploads/2019/07/NBC-Logo-500x281.png\" group-title=\"Local Channels (Not 24/7)\",KNBC-TV NBC 4 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/2453\n#EXTINF:0 tvg-logo=\"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/The_CW_%282006%E2%80%932024%29.svg/1920px-The_CW_%282006%E2%80%932024%29.svg.png\" group-title=\"Local Channels (Not 24/7)\",KTLA-TV CW 5 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/90546\n#EXTINF:0 tvg-logo=\"https://1000logos.net/wp-content/uploads/2021/10/ABC-logo-500x281.png\" group-title=\"Local Channels (Not 24/7)\",KABC-TV ABC 7 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/2684\n#EXTINF:0 tvg-logo=\"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/KCAL-TV_Logo..png/250px-KCAL-TV_Logo..png\" group-title=\"Local Channels (Not 24/7)\",KCAL-TV CBS/Ind. 9 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/87548\n#EXTINF:0 tvg-logo=\"https://wp-cdn.milocloud.com/cap-equity-wp/wp-content/uploads/2020/04/08180526/ox-logo-fox-tv-logo-png.png\" group-title=\"Local Channels (Not 24/7)\",KTTV-TV FOX 11 (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/2550\n#EXTINF:0 tvg-logo=\"https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/MyNetworkTV_2D_Logo.svg/1280px-MyNetworkTV_2D_Logo.svg.png\" group-title=\"Local Channels (Not 24/7)\",KCOP-TV MyNetworkTV 13 (FOX 11+) (Los Angeles CA)\nhttps://restream-live.realiptv.to/09145054/65339468/597156\n#EXTINF:0 tvg-logo=\"https://1000logos.net/wp-content/uploads/2016/11/CBS-Logo-500x281.png\" group-title=\"Local Channels (Not 24/7)\",WCBS-TV CBS 2 (New York NY)\nhttps://restream-live.realiptv.to/09145054/65339468/89712\n#EXTINF:0 tvg-logo=\"https://1000logos.net/wp-content/uploads/2019/07/NBC-Logo-500x281.png\" group-title=\"Local Channels (Not 24/7)\",WNBC-TV NBC 4 (New York NY)\nhttps://restream-live.realiptv.to/09145054/65339468/2447\n#EXTINF:0 tvg-logo=\"https://wp-cdn.milocloud.com/cap-equity-wp/wp-content/uploads/2020/04/08180526/ox-logo-fox-tv-logo-png.png\" group-title=\"Local Channels (Not 24/7)\",WNYW-TV FOX 5 (New York NY)",
+      "status": 200
+    },
+    {
+      "repo": "ikku47/iptv-ld",
+      "m3u_url": "https://raw.githubusercontent.com/ikku47/iptv-ld/main/index.m3u",
+      "m3u_size": 2600356,
+      "m3u_preview": "#EXTM3U\r\n#EXTINF:-1 tvg-id=\"\" tvg-logo=\"\" group-title=\"Undefined\",00s Replay\r\nhttp://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/62ba60f059624e000781c436/master.m3u8?appName=web&appVersion=unknown&clientTime=0&deviceDNT=0&deviceId=6c25e430-30d3-11ef-9cf5-e9ddff8ff496&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&serverSideAds=false&sid=1b7de8e4-d114-4438-b098-6f7aee77b4be\r\n#EXTINF:-1 tvg-id=\"123tv.de\" tvg-logo=\"https://i.imgur.com/slSUDNX.png\" group-title=\"Shop\",1-2-3 TV (270p)\r\nhttps://123tv-mx1.flex-cdn.net/index.m3u8\r\n#EXTINF:-1 tvg-id=\"1AlmereTV.nl\" tvg-logo=\"https://i.imgur.com/XfkbTrU.png\" group-title=\"General\",1Almere TV (720p)\r\nhttps://d3472rjicrodic.cloudfront.net/nlpo/clr-nlpo/709d5260/index.m3u8\r\n#EXTINF:-1 tvg-id=\"1KZNTV.za\" tvg-logo=\"https://admango.cdn.mangomolo.com/analytics/uploads/188/6544bebaae.jpg\" group-title=\"Entertainment;Family;General\",1KZN TV (576p)\r\nhttps://cdn.freevisiontv.co.za/sttv/smil:1kzn.stream.smil/playlist.m3u8\r\n#EXTINF:-1 tvg-id=\"MusicChannel.hu\" tvg-logo=\"https://i.imgur.com/pzU6FrQ.png\" group-title=\"Music\",1Music Channel Hungary (576p)\r\nhttp://1music.hu/1music.m3u8\r\n#EXTINF:-1 tvg-id=\"1TV.af@SD\" tvg-logo=\"https://i.imgur.com/EEcNI9E.png\" group-title=\"General\",1TV\r\nhttps://live20.bozztv.com/dvrfl05/gin-1tvafg/index.m3u8\r\n#EXTINF:-1 tvg-id=\"1TV.ge\" tvg-logo=\"https://i.imgur.com/FSkYLPK.png\" group-title=\"General\",1TV (720p)\r\nhttps://tv.cdn.xsg.ge/gpb-1tv/index.m3u8\r\n#EXTINF:-1 tvg-id=\"1TwenteTV.nl@SD\" tvg-logo=\"https://i.imgur.com/ftiuNK3.png\" group-title=\"General\",1Twente TV (1080p)\r\nhttps://ms7.mx-cd.net/dtv-11/198-989148/1Twente_TV.smil/chunklist_w954512639_b4292608_slNLD.m3u8\r\n#EXTINF:-1 tvg-id=\"002RadioTV.do\" tvg-logo=\"https://i.imgur.com/7oNe8xj.png\" group-title=\"General\",002 Radio TV (720p)\r\nhttps://cdn.002radio.com:3909/live/radio002live.m3u8\r\n#EXTINF:-1 tvg-id=\"2GB.au\" tvg-logo=\"https://i.ibb.co/jwM8DFG/2GB-1.png\" group-title=\"News\",2GB Sydney (1080p)\r",
+      "status": 200
+    },
+    {
+      "repo": "Adam-ZS/iptv-ru-ua",
+      "m3u_url": "https://raw.githubusercontent.com/Adam-ZS/iptv-ru-ua/main/playlist.m3u",
+      "m3u_size": 5957,
+      "m3u_preview": "#EXTM3U\n#EXTINF:-1 tvg-name=\"5 \u043a\u0430\u043d\u0430\u043b\",5 \u043a\u0430\u043d\u0430\u043b\nhttps://zabava-htlive.cdn.ngenix.net/hls/CH_5TV/variant.m3u8\n#EXTINF:-1 tvg-name=\"ORT\",ORT\nhttps://cdn.ntv.ru/vitrina18/index.m3u8\n#EXTINF:-1 tvg-id=\"ChannelOne.ru@SD\" tvg-name=\"\u041f\u0435\u0440\u0432\u044b\u0439 \u043a\u0430\u043d\u0430\u043b\" tvg-logo=\"https://i.imgur.com/RUSX0rX.png\",\u041f\u0435\u0440\u0432\u044b\u0439 \u043a\u0430\u043d\u0430\u043b\nhttps://streaming.televizor-24-tochka.ru/live/210.m3u8\n#EXTINF:-1 tvg-id=\"ChannelOne.ru@SD\" tvg-name=\"\u041f\u0435\u0440\u0432\u044b\u0439 \u043a\u0430\u043d\u0430\u043b (\u043e\u0444\u0438\u0446)\" tvg-logo=\"https://i.imgur.com/RUSX0rX.png\",\u041f\u0435\u0440\u0432\u044b\u0439 \u043a\u0430\u043d\u0430\u043b (\u043e\u0444\u0438\u0446)\nhttps://cdn.ntv.ru/vitrina18/index.m3u8\n#EXTINF:-1 tvg-id=\"360.ru@SD\" tvg-name=\"360\u00b0\" tvg-logo=\"https://i.imgur.com/VTJqdoX.png\",360\u00b0\nhttps://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-04-srt.smil/playlist.m3u8\n#EXTINF:-1 tvg-name=\"\u041f\u0435\u0440\u0432\u044b\u0439\",\u041f\u0435\u0440\u0432\u044b\u0439\nhttps://cdn.ntv.ru/vitrina18/index.m3u8\n#EXTINF:-1 tvg-name=\"RT\u0414\",RT\u0414\nhttps://rt-doc.rttv.com/dvr/rtdru/playlist.m3u8\n#EXTINF:-1 tvg-id=\"ShoppingLive.ru@SD\" tvg-name=\"Shopping Live (576p)\" tvg-logo=\"https://i.imgur.com/EMmGnjV.png\",Shopping Live (576p)\nhttp://serv30.vintera.tv:8081/shoppinglive/shoppinglive_stream/playlist.m3u8\n#EXTINF:-1 tvg-id=\"Aris24.ru@SD\" tvg-name=\"\u0410\u0440\u0438\u0441 24 (720p)\" tvg-logo=\"https://i.imgur.com/CTFVEAb.png\",\u0410\u0440\u0438\u0441 24 (720p)\nhttp://serv25.vintera.tv:8081/test/aris/playlist.m3u8\n#EXTINF:-1 tvg-id=\"Mir24.ru@SD\" tvg-name=\"\u041c\u0438\u0440 24 (1080p)\" tvg-logo=\"https://i.imgur.com/dj9c8Yd.png\",\u041c\u0438\u0440 24 (1080p)",
+      "status": 200
+    },
+    {
+      "repo": "Babuperumana/movies_m3u",
+      "m3u_url": "https://raw.githubusercontent.com/Babuperumana/movies_m3u/main/playlist.m3u",
+      "m3u_size": 256370,
+      "m3u_preview": "#EXTM3U\n\n#EXTINF:-1 tvg-name=\"Insidious Out Of The Further\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Insidious-Out-of-the-Further-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Insidious Out Of The Further\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FNTdUY3lCeXIzd3pLZURtdCtDRC9XQT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Jana Nayakudu\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Jana-Nayakudu-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Jana Nayakudu\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FWVd2RjB5T3REWExMdE9qcFFxWk1kZz09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Chennai Love Story\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Chennai-Love-Story-Telugu-1.jpg\" group-title=\"Movies / Telugu / 2026\",Chennai Love Story\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FR2VCUFRycW1ha1N3S1NIZ0w4RllIQT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Vishwanath And Sons\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Vishwanath-and-Sons-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Vishwanath And Sons\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FbGRxb3pJTUFkNldBdnFiRlRuVTQrQT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Raja The Raja\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Raja-the-Raja-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Raja The Raja\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FcUppMUo0bkFTYzZPdW5oZnl2d0dFUT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Chennai Love Story\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Chennai-Love-Story-Tamil.jpg\" group-title=\"Movies / Tamil / 2026\",Chennai Love Story\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FUklKbWtkMTRNeGdnVklVVXQxVThBUT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Makutam\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Makutam-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Makutam\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FYmd1Z1ZiU3dOVlRiNGVqMHJuTG93QT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Pyaar Prema Kalyanam\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Pyaar-Prema-Kalyanam-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Pyaar Prema Kalyanam\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FQmE3b2ZvcTNhZGxxKzZZbXlWdnBGQT09%2FxfgdYshjhYhj%3D%21sdsHsyG\n#EXTINF:-1 tvg-name=\"Evil Dead Burn\" tvg-logo=\"https://www.5movierulz.plumbing/uploads/Evil-Dead-Burn-Telugu.jpg\" group-title=\"Movies / Telugu / 2026\",Evil Dead Burn\nhttps://movierulz.babuperumana.workers.dev/proxy?url=https%3A%2F%2Fhls2.vcdnx.com%2Fhls%2FOFozcjNBYXJ0RG5RYjJ5dmZrSjZRQT09%2FxfgdYshjhYhj%3D%21sdsHsyG",
+      "status": 200
+    }
+  ],
+  "scanned_at": "2026-08-25T13:28:58.657404"
+}
