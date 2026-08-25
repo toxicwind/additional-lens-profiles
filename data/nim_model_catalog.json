@@ -1,0 +1,46 @@
+{
+  "endpoint": "https://integrate.api.nvidia.com/v1",
+  "total_models": 95,
+  "tested_models": {
+    "meta/llama-3.1-8b-instruct": {
+      "status": "OK",
+      "speed": "fast",
+      "accuracy": "low",
+      "latency_ms": 900
+    },
+    "meta/llama-3.1-70b-instruct": {
+      "status": "OK",
+      "speed": "slow",
+      "accuracy": "medium",
+      "latency_ms": 30000
+    },
+    "meta/llama-3.1-405b-instruct": {
+      "status": "NOT_AVAILABLE",
+      "speed": "N/A",
+      "accuracy": "N/A",
+      "latency_ms": 0
+    },
+    "nvidia/nemotron-4-340b-instruct": {
+      "status": "NOT_AVAILABLE",
+      "speed": "N/A",
+      "accuracy": "N/A",
+      "latency_ms": 0
+    }
+  },
+  "recommended": {
+    "fast_tasks": "meta/llama-3.1-8b-instruct",
+    "balanced_tasks": "meta/llama-3.1-70b-instruct",
+    "accuracy_tasks": "meta/llama-3.1-70b-instruct (405B unavailable)"
+  },
+  "largest_available": [
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+    "meta/llama-3.2-90b-vision-instruct",
+    "meta/llama-3.3-70b-instruct"
+  ],
+  "groq_pivot_models": [
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b"
+  ],
+  "updated_at": "2026-08-25T20:48:28.808820"
+}
