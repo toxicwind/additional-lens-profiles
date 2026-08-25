@@ -1,0 +1,35 @@
+name: benchmark_runner
+agent_type: benchmark_orchestration
+model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
+temperature: 0.1
+max_tokens: 2048
+max_concurrent: 4
+kv_cache_strategy: full
+system_prompt: |
+  You are a benchmark orchestration agent.
+  Your task is to run throughput and latency benchmarks against NVIDIA NIM endpoints.
+  You measure: tok/s, p50/p90/p99 latency, concurrent efficiency, KV-cache hit rate.
+  Report results in structured JSON.
+
+  When using tools, respond with JSON: {"tool": "TOOL_NAME", "params": {"model": "..."}}
+tools:
+  - name: nim_benchmark
+    description: Run NVIDIA NIM benchmark
+    parameters:
+      type: object
+      properties:
+        model: {type: string}
+        concurrency: {type: integer}
+        duration_sec: {type: integer}
+      required: [model, concurrency]
+  - name: triton_benchmark
+    description: Run Triton Inference Server benchmark
+    parameters:
+      type: object
+      properties:
+        model: {type: string}
+        batch_size: {type: integer}
+      required: [model, batch_size]
+observability:
+  prometheus_port: 25103
+  metrics: [throughput_tok_per_sec, latency_p50_ms, latency_p99_ms, gpu_utilization]
