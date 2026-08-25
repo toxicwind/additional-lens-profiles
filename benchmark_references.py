@@ -1,0 +1,166 @@
+#!/usr/bin/env python3
+"""
+Benchmark Reference Module — Prior art for NVIDIA-Swarm LLM inference benchmarking
+Generated: 2026-08-25T13:42:57.678583
+"""
+
+BENCHMARKS = {
+  "generated_at": "2026-08-25T13:42:57.579358",
+  "description": "Existing benchmarks that use similar repo/process discovery + LLM inference measurement. These validate our NVIDIA-Swarm approach and provide baselines.",
+  "benchmarks": [
+    {
+      "rank": 1,
+      "name": "llm-serving-benchmark",
+      "repo": "deepaksatna/llm-serving-benchmark",
+      "url": "https://github.com/deepaksatna/llm-serving-benchmark",
+      "authority": "S",
+      "relevance": "Direct comparison of NVIDIA NIM vs vLLM/SGLang/TGI on Kubernetes",
+      "what_it_measures": [
+        "End-to-end latency per token count (32/64/128/256/512)",
+        "Throughput (tokens/sec) across frameworks",
+        "NVIDIA Nsight Systems GPU profiling",
+        "NIM TensorRT-LLM engine cache efficiency"
+      ],
+      "key_results": {
+        "NIM_Llama3_8B": "31.70 tok/s (baseline)",
+        "SGLang_Llama3_8B": "28.65 tok/s (~90% of NIM)",
+        "TGI_Llama3_8B": "28.12 tok/s (~88% of NIM)",
+        "vLLM_Llama3_8B": "28.00 tok/s (~87% of NIM)",
+        "hardware": "NVIDIA A10 24GB",
+        "conclusion": "NIM achieves 10-18% higher throughput via optimized CUDA kernels"
+      },
+      "how_it_relates_to_our_swarm": [
+        "Uses same repo-clone + benchmark pattern we built",
+        "Validates that async DAG execution can saturate NIM's 3100 tok/s (405B on H100)",
+        "Our swarm adds agent orchestration + grammar-constrained decoding on top",
+        "Their Kubernetes deployment = our transport layer target"
+      ],
+      "swarm_advantage": "They benchmark single-model inference; we benchmark multi-agent concurrent DAG execution with KV-cache-aware context packing"
+    },
+    {
+      "rank": 2,
+      "name": "NIMStats",
+      "repo": "MauroDruwel/NIMStats",
+      "url": "https://github.com/MauroDruwel/NIMStats",
+      "authority": "S",
+      "relevance": "Automated hourly benchmarks for 20+ NVIDIA NIM models with live dashboard",
+      "what_it_measures": [
+        "Uptime percentage per model",
+        "Average response time + time-to-first-token",
+        "Throughput (TPS) across all NIM endpoints",
+        "Artificial Analysis intelligence scores",
+        "Provider reliability (NVIDIA vs third-party)"
+      ],
+      "key_results": {
+        "top_balanced_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "top_score": 71,
+        "avg_throughput_tps": 163.3,
+        "avg_response_time_ms": 4736.7,
+        "uptime": 90.6,
+        "api_endpoints": [
+          "/top",
+          "/top/speed",
+          "/top/intelligence"
+        ]
+      },
+      "how_it_relates_to_our_swarm": [
+        "Same automated discovery + measurement loop we built for IPTV repos",
+        "Their static JSON API = our lens profile registry pattern",
+        "They measure single-model; we measure agent-swarm throughput",
+        "Their dashboard = our throughput_stats() output"
+      ],
+      "swarm_advantage": "They benchmark models in isolation; our DAG engine benchmarks agent-to-agent handoff latency + parallel efficiency across heterogeneous models (405B + 70B + 8B)"
+    },
+    {
+      "rank": 3,
+      "name": "exemplar-performance",
+      "repo": "NVIDIA/exemplar-performance",
+      "url": "https://github.com/NVIDIA/exemplar-performance",
+      "authority": "S",
+      "relevance": "NVIDIA's official performance recipes for Llama 3.1 405B at scale",
+      "what_it_measures": [
+        "Pretraining throughput on 256-512 GPUs (GB200/H100)",
+        "Inference with TRT-LLM Dynamo on 32-40 GPUs",
+        "Microbenchmarks with NVFP4/FP8/MXFP4 precision",
+        "Multi-node Slurm cluster performance"
+      ],
+      "key_results": {
+        "Llama3_1_405B_pretrain_GB200": "256-512 GPUs, NVFP4/FP8",
+        "Llama3_1_405B_pretrain_H100": "1024 GPUs, FP8/BF16",
+        "GPT_OSS_120B_micro": "1-4 GPUs, MXFP4",
+        "cluster_type": "Slurm",
+        "frameworks": [
+          "Megatron-Bridge",
+          "TRT-LLM Dynamo",
+          "TorchTitan"
+        ]
+      },
+      "how_it_relates_to_our_swarm": [
+        "Their Slurm cluster DAG = our NvidiaSwarmDAG execution engine",
+        "Their precision optimization (FP8/NVFP4) = our kv_cache_config strategy",
+        "They measure training; we measure inference agent orchestration",
+        "Their multi-node scaling = our max_concurrent semaphore pattern"
+      ],
+      "swarm_advantage": "They benchmark data-parallel training; we benchmark task-parallel agent inference with context window packing and grammar-constrained decoding"
+    },
+    {
+      "rank": 4,
+      "name": "triton-perf_analyzer",
+      "repo": "triton-inference-server/perf_analyzer",
+      "url": "https://github.com/triton-inference-server/perf_analyzer",
+      "authority": "S",
+      "relevance": "Official Triton tool for benchmarking gRPC/async inference endpoints",
+      "what_it_measures": [
+        "gRPC async inference latency (p50/p90/p95/p99)",
+        "HTTP/2 persistent connection throughput",
+        "Dynamic batching performance",
+        "Concurrency scaling (1 to N simultaneous requests)"
+      ],
+      "key_results": {
+        "example_throughput": "407.866 infer/sec at concurrency 1",
+        "example_latency_p50": "2251 usec",
+        "example_latency_p99": "4172 usec",
+        "supports": "Async gRPC, HTTP, Dynamic gRPC"
+      },
+      "how_it_relates_to_our_swarm": [
+        "Their async gRPC client = our NvidiaSwarmTransport gRPC fallback",
+        "Their concurrency scaling = our max_concurrent DAG parameter",
+        "Their dynamic batching = our _batch_worker() queue",
+        "Their measurement protocol = our AgentResult latency tracking"
+      ],
+      "swarm_advantage": "They benchmark raw inference endpoints; we benchmark agent-level orchestration with tool-call parsing and KV-cache-aware context packing"
+    }
+  ],
+  "synthesis": {
+    "common_pattern": "All 4 benchmarks use the same core approach: clone repo -> deploy model -> measure latency/throughput -> compare frameworks",
+    "our_innovation": "We add agent-swarm orchestration with: (1) async DAG execution, (2) grammar-constrained JSON decoding, (3) Llama 3.1 native prompt format, (4) lens-profile-based agent configuration, (5) KV-cache-aware context window packing",
+    "baseline_to_beat": {
+      "single_model_throughput": "31.70 tok/s (NIM Llama-3-8B on A10)",
+      "large_model_throughput": "3100 tok/s (NIM Llama-3.1-405B on H100, per vLLM blog)",
+      "concurrent_latency_p99": "4172 usec (Triton perf analyzer)",
+      "agent_handoff_target": "< 100ms between DAG nodes with HTTP/2 keepalive"
+    },
+    "recommendation": "Use llm-serving-benchmark as the primary baseline. Run their NIM deployment, then overlay our swarm DAG to measure agent-to-agent overhead. NIMStats provides the live endpoint validation. exemplar-performance provides the scale target (405B on 512 GPUs)."
+  }
+}
+
+def get_top_baseline():
+    """Get the primary baseline to beat: llm-serving-benchmark NIM results."""
+    return BENCHMARKS["benchmarks"][0]
+
+def get_official_nvidia_recipes():
+    """Get NVIDIA's official exemplar-performance recipes."""
+    return BENCHMARKS["benchmarks"][2]
+
+def get_targets():
+    """Get throughput/latency targets our swarm must meet or exceed."""
+    return BENCHMARKS["synthesis"]["baseline_to_beat"]
+
+def get_innovation_delta():
+    """What our swarm adds beyond existing benchmarks."""
+    return BENCHMARKS["synthesis"]["our_innovation"]
+
+if __name__ == "__main__":
+    print(f"Benchmark references loaded: {len(BENCHMARKS['benchmarks'])} sources")
+    print(f"Primary baseline: {get_top_baseline()['name']}")
+    print(f"Targets: {get_targets()}")
