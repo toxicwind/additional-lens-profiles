@@ -1,115 +1,95 @@
-<div align="center">
+# ARC-AGI Swarm — Additional Lens Profiles
 
-# Additional Lens Profiles
-### Autonomous Intelligence Discovery Platform
-
-[![Swarm](https://img.shields.io/badge/NVIDIA--Swarm-v2.0-76c893?style=for-the-badge&logo=nvidia)](https://docs.api.nvidia.com/)
-[![Python](https://img.shields.io/badge/Python-3.12-3776ab?style=for-the-badge&logo=python)](https://python.org)
-[![License](https://img.shields.io/badge/license-OSINT-555555?style=for-the-badge)](LICENSE)
-
-**Multi-agent swarm for autonomous discovery, analysis, and synthesis of open-source intelligence**
-
-</div>
+> **Hyper-modular NVIDIA-NIM Swarm framework** for async agent orchestration, IPTV/Stremio discovery, and LLM inference benchmarking.
+> 
+> **Status:** Private case study repository. Public release TBD.
 
 ---
 
-## What is This?
-
-This repository hosts **lens profiles** — autonomous discovery campaigns executed by multi-agent NVIDIA NIM swarms. Each folder represents a completed campaign with full datasets, agent outputs, and generated tooling.
-
-## How It Works
-
-```
-User Task -> Swarm Orchestrator -> Parallel Agents (70B/8B) -> Synthesis -> Push to GitHub
-```
-
-**Swarm Architecture:**
-- **Architect** (70B) — Designs system topology, APIs, schemas
-- **Complex Coder** (70B) — Generates production Python with tests
-- **Proof Writer** (70B) — Formal correctness proofs
-- **Analyst** (70B) — Threat/intelligence analysis
-- **Reporter** (70B) — Synthesizes aesthetic markdown reports
-
-**Infrastructure:**
-- Async DAG execution with HTTP/2 persistent connections
-- Grammar-constrained JSON decoding
-- Llama 3.1 native prompt format
-- KV-cache-aware context packing
-- Streaming with incremental save
-- Tunnel daemon (:80/:443 forwarding)
-- MITM proxy with request logging
-
----
-
-## Campaigns
-
-| Campaign | Repos | Agents | Date | Folder |
-|----------|-------|--------|------|--------|
-| **Streaming Ecosystem Aug 2026** | 324 | 5 | 2026-08-25 | [`streaming-aug2026/`](streaming-aug2026/) |
-
----
-
-## Swarm Core Modules
-
-| Module | Purpose |
-|--------|---------|
-| [`swarm_maximal.py`](swarm_maximal.py) | Maximal orchestrator with 90B/70B/8B tiers |
-| [`nvidia_swarm_core.py`](nvidia_swarm_core.py) | Async DAG execution engine |
-| [`nvidia_swarm_agent.py`](nvidia_swarm_agent.py) | Llama 3.1 native agent |
-| [`nvidia_swarm_transport.py`](nvidia_swarm_transport.py) | HTTP/2 + gRPC transport |
-| [`lens_profile.py`](lens_profile.py) | Agent lens profile registry |
-| [`swarm_tunnel_daemon.py`](swarm_tunnel_daemon.py) | Port forwarding daemon |
-| [`swarm_mitm_proxy.py`](swarm_mitm_proxy.py) | Traffic analysis proxy |
-| [`benchmark_references.py`](benchmark_references.py) | Baseline benchmarks |
-
----
-
-## Usage
+## Quick Start
 
 ```bash
-# Run a new discovery campaign
-python3 swarm_maximal.py --task "Find Kubernetes security tools" --agents architect,coder,analyst
-
-# Start tunnel daemon
-python3 swarm_tunnel_daemon.py start
-
-# Start MITM proxy
-python3 swarm_mitm_proxy.py --port 8080
+git clone https://github.com/toxicwind/additional-lens-profiles.git
+cd additional-lens-profiles
+pip install -r requirements.txt
+python src/nvidia_swarm/swarm_main.py
 ```
 
----
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    SWARM ORCHESTRATOR                        │
+│              (async DAG + lens profiles)                     │
+├─────────────┬─────────────┬─────────────┬─────────────────┤
+│  Researcher │   Analyst   │    Coder    │  Orchestrator   │
+│   (405B)    │   (70B)     │   (405B)    │    (405B)       │
+├─────────────┴─────────────┴─────────────┴─────────────────┤
+│              NVIDIA NIM Transport Layer                     │
+│         (HTTP/2 persistent + gRPC fallback)               │
+├─────────────────────────────────────────────────────────────┤
+│              Triton Inference Server                        │
+│         (dynamic batching + KV-cache opt)                 │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Case Studies
+
+| # | Title | Status | Link |
+|---|-------|--------|------|
+| 01 | Groq Compound Mini Deprecation OSINT | In Progress | [`case-study-01-groq-deprecation/`](case-study-01-groq-deprecation/) |
+| 02 | IPTV/Stremio/Nuvio Repo Discovery (Aug 2026) | Complete | [`data/aug2026/`](data/aug2026/) |
+
+## Modules
+
+| Module | Purpose | File |
+|--------|---------|------|
+| `nvidia_swarm_core` | Async DAG execution engine | [`src/nvidia_swarm/core.py`](src/nvidia_swarm/core.py) |
+| `nvidia_swarm_agent` | Llama 3.1 native prompt + grammar-constrained decoding | [`src/nvidia_swarm/agent.py`](src/nvidia_swarm/agent.py) |
+| `nvidia_swarm_transport` | HTTP/2 persistent connections + Triton gRPC | [`src/nvidia_swarm/transport.py`](src/nvidia_swarm/transport.py) |
+| `lens_profile` | Agent configuration registry (researcher/coder/analyst/orchestrator) | [`src/nvidia_swarm/lens.py`](src/nvidia_swarm/lens.py) |
+| `iptv_discovery` | GitHub API parallel search + deep M3U/manifest extraction | [`src/iptv_discovery/discovery.py`](src/iptv_discovery/discovery.py) |
+| `benchmark_references` | Prior art baselines (4 sources) | [`src/benchmarks/references.py`](src/benchmarks/references.py) |
 
 ## Benchmarks
 
-| Source | Metric | Our Delta |
-|--------|--------|-----------|
-| [llm-serving-benchmark](https://github.com/deepaksatna/llm-serving-benchmark) | 31.70 tok/s (NIM 8B) | +agent orchestration overhead |
-| [NIMStats](https://github.com/MauroDruwel/NIMStats) | 163.3 TPS avg | +DAG handoff latency |
-| [exemplar-performance](https://github.com/NVIDIA/exemplar-performance) | 405B @ 512 GPUs | +context packing |
-| [triton-perf_analyzer](https://github.com/triton-inference-server/perf_analyzer) | 407 infer/sec | +tool-call parsing |
+See [`docs/BENCHMARK_BASELINES.md`](docs/BENCHMARK_BASELINES.md) for prior art.
 
----
+Our targets:
+- **Agent handoff latency:** < 100ms (DAG node-to-node)
+- **Throughput:** Saturate NIM's 3100 tok/s (405B on H100)
+- **Concurrent efficiency:** 16 agents parallel with semaphore control
 
-## Proof Summary
+## Data
 
-The async DAG engine satisfies:
-1. **Termination** — O(|V| + |E|) steps
-2. **Safety** — Circular deps detected by topological sort
-3. **Liveness** — Ready agents execute in O(1) rounds
-4. **Bounded Concurrency** — 0 <= active <= max_concurrent
-5. **Compositionality** — Local properties imply global
+| Dataset | Records | Size | Link |
+|---------|---------|------|------|
+| IPTV/Stremio Aug 2026 repos | 324 | 216 KB | [`data/aug2026/iptv_stremio_repos.jsonl`](data/aug2026/iptv_stremio_repos.jsonl) |
+| Nuvio-specific repos | 33 | 25 KB | [`data/aug2026/nuvio_repos.json`](data/aug2026/nuvio_repos.json) |
+| Live manifest hits | 4 | 20 KB | [`data/aug2026/deep_scan.json`](data/aug2026/deep_scan.json) |
+| Benchmark references | 4 sources | 7 KB | [`data/benchmarks/references.json`](data/benchmarks/references.json) |
 
-See [`streaming-aug2026/MAXIMAL_proof_writer_141751.md`](streaming-aug2026/MAXIMAL_proof_writer_141751.md)
+## Live Manifests Discovered
 
----
+| Repo | Manifest | Type |
+|------|----------|------|
+| [yowmamasita/usa-tv-next](https://github.com/yowmamasita/usa-tv-next) | [manifest.json](https://raw.githubusercontent.com/yowmamasita/usa-tv-next/main/manifest.json) | TV |
+| [esp4ce/stremio-letterboxd-addon](https://github.com/esp4ce/stremio-letterboxd-addon) | [manifest.json](https://raw.githubusercontent.com/esp4ce/stremio-letterboxd-addon/main/manifest.json) | Movie |
+| [Gowaru/gowaru-nuvio-providers](https://github.com/Gowaru/gowaru-nuvio-providers) | [manifest.json](https://raw.githubusercontent.com/Gowaru/gowaru-nuvio-providers/main/manifest.json) | Repo |
+| [victorgveloso/animes-season-addon](https://github.com/victorgveloso/animes-season-addon) | [manifest.json](https://raw.githubusercontent.com/victorgveloso/animes-season-addon/main/manifest.json) | Movie/Series |
 
-<div align="center">
+## Live M3U Playlists
 
-**Last updated**: 2026-08-25 15:29 UTC  
-**PAT**: Rotated per campaign (never committed)  
-**Model**: meta/llama-3.1-70b-instruct via integrate.api.nvidia.com
+| Repo | Playlist | Size |
+|------|----------|------|
+| [Ace550-Ramon/IPTV](https://github.com/Ace550-Ramon/IPTV) | [tv.m3u](https://raw.githubusercontent.com/Ace550-Ramon/IPTV/main/tv.m3u) | 1.3 MB |
+| [ikku47/iptv-ld](https://github.com/ikku47/iptv-ld) | [index.m3u](https://raw.githubusercontent.com/ikku47/iptv-ld/main/index.m3u) | 2.6 MB |
+| [time2shine/Rokon-IPTV](https://github.com/time2shine/Rokon-IPTV) | [playlist.m3u](https://raw.githubusercontent.com/time2shine/Rokon-IPTV/main/playlist.m3u) | 168 KB |
 
-[![ARC-AGI](https://img.shields.io/badge/ARC--AGI-experiment-9b5de5?style=flat-square)](https://arcprize.org)
-[![NVIDIA](https://img.shields.io/badge/NVIDIA-NIM-76b900?style=flat-square&logo=nvidia)](https://www.nvidia.com/en-us/ai/)
+## License
 
-</div>
+MIT — See [`LICENSE`](LICENSE)
+
+## Contact
+
+ARC-AGI Experiment — `toxicwind` on GitHub
