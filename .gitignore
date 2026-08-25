@@ -1,0 +1,35 @@
+
+# Secrets — NEVER COMMIT
+.env
+.env.local
+.env.*
+*.pem
+*.key
+auth-profiles.json
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Node
+node_modules/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated outputs
+case-study-*/output/
+*.jsonl
+coverage/
+htmlcov/
