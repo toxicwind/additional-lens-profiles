@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-08-24T22:20:00Z",
+  "findings": {
+    "future_dated_manifest": {
+      "file": "day/20260825/skill_tests.json",
+      "description": "Pre-scheduled test manifest for 2026-08-25 embedded in archivefs",
+      "status": "BROKEN - all tests failing",
+      "components": {
+        "envd-monitor": "Scheduled envd health check",
+        "s6-supervisor": "CRASHED - Python traceback at line 74",
+        "websocket-bridge": "404 Not Found - handshake failed",
+        "grpc-probe": "HTTP/1.1 400 Bad Request (expected HTTP/2)",
+        "portal-client": "404 Not Found"
+      }
+    },
+    "timestamp_obfuscation": {
+      "description": "ALL 3693 archivefs entries have garbage mtimes",
+      "sample_raw": 5352953740941730106,
+      "sample_xor": "overflow",
+      "assessment": "Deliberate timestamp obfuscation - covert container behavior"
+    },
+    "secrets_inventory": {
+      "total_hits": 31,
+      "github_pats": 6,
+      "jwts": 20,
+      "locations": [
+        "/mnt/agents/temp/mobidevtools.har(8-16).txt",
+        "/mnt/agents/temp/storage_dump_1787458459689.json.txt",
+        "/mnt/agents/upload/git_config.txt"
+      ]
+    },
+    "hidden_processes": {
+      "assessment": "No hidden processes detected",
+      "note": "PID 13867 was a race condition (process exited during scan)"
+    },
+    "suspicious_tools": {
+      "secret_scan.sh": "Sophisticated secret scanner with 20+ regex patterns",
+      "press_key.rs": "Browser automation keypress tool (Rust)",
+      "fast_browser_use": "Full browser automation framework"
+    }
+  }
+}
