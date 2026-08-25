@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-08-25T21:58:02.730744",
+  "description": "5 GitHub repos from 2026 that directly help our NVIDIA-Swarm architecture",
+  "repos": [
+    {
+      "rank": 1,
+      "name": "HKUDS/DeepCode",
+      "url": "https://github.com/HKUDS/DeepCode",
+      "stars": 16425,
+      "pushed": "2026-08-25",
+      "why": "Massive code intelligence repo \u2014 patterns for agent-based code analysis that our coder lens can borrow",
+      "borrow": "AST traversal patterns, code embedding strategies, multi-file analysis DAG"
+    },
+    {
+      "rank": 2,
+      "name": "tafreeman/agentic-runtime-platform",
+      "url": "https://github.com/tafreeman/agentic-runtime-platform",
+      "stars": 2,
+      "pushed": "2026-08-25",
+      "why": "Fresh agentic runtime with parallel execution \u2014 directly comparable to our swarm DAG",
+      "borrow": "Runtime scheduling, agent lifecycle management, fault tolerance patterns"
+    },
+    {
+      "rank": 3,
+      "name": "Arpit2811/Multi_Agent_Orchestration_pre_sales_experts",
+      "url": "https://github.com/Arpit2811/Multi_Agent_Orchestration_pre_sales_experts",
+      "stars": 0,
+      "pushed": "2026-08-25",
+      "why": "Domain-specific multi-agent orchestration (pre-sales) \u2014 shows how to specialize swarm for verticals",
+      "borrow": "Domain-specific agent roles, handoff protocols, sales-specific tool schemas"
+    },
+    {
+      "rank": 4,
+      "name": "desplega-ai/agent-swarm",
+      "url": "https://github.com/desplega-ai/agent-swarm",
+      "stars": 0,
+      "pushed": "2026-08-25",
+      "why": "Agentic operating system with lead/worker topology \u2014 matches our orchestrator lens",
+      "borrow": "CLI patterns, Docker Compose deployment, worker pool management"
+    },
+    {
+      "rank": 5,
+      "name": "shinpr/sub-agents-skills",
+      "url": "https://github.com/shinpr/sub-agents-skills",
+      "stars": 0,
+      "pushed": "2026-01-16",
+      "why": "Cross-LLM sub-agent orchestration \u2014 our skill.md pattern reference",
+      "borrow": "Agent definition format (YAML frontmatter), backend routing, permission levels"
+    }
+  ],
+  "arxiv_papers": [
+    {
+      "title": "Autogrammar: Learning Context-Free Grammars for Grammar-Constrained Decoding",
+      "url": "https://arxiv.org/abs/2608.05493",
+      "authors": "Amazon Science",
+      "date": "2026-08-06",
+      "why": "3.8x speedup via LTL-constrained grammar learning \u2014 validates our grammar-constrained decoding approach"
+    }
+  ],
+  "skill_patterns": [
+    {
+      "source": "am-will/swarms",
+      "pattern": "Wave-based execution",
+      "skill": "swarm-planner + parallel-task"
+    },
+    {
+      "source": "ruvnet/agentic-flow",
+      "pattern": "Topology patterns",
+      "skill": "swarm-orchestration"
+    },
+    {
+      "source": "qodex-ai/ai-agent-skills",
+      "pattern": "Evaluation metrics",
+      "skill": "multi-agent-orchestration"
+    },
+    {
+      "source": "vectara/agent-skills",
+      "pattern": "Step-gated state machines",
+      "skill": "agent-orchestration"
+    },
+    {
+      "source": "Dimillian/Skills",
+      "pattern": "Parallel read-only review",
+      "skill": "review-swarm"
+    }
+  ]
+}
