@@ -1,35 +1,52 @@
-
-# Secrets — NEVER COMMIT
+# Secrets
 .env
-.env.local
 .env.*
 *.pem
 *.key
 auth-profiles.json
-secrets/
 
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
+*.so
+.Python
 build/
+develop-eggs/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Node
-node_modules/
+# Data
+data/cache/*
+data/output/*
+!data/cache/.gitkeep
+!data/output/.gitkeep
+
+# Logs
 *.log
+logs/
 
 # IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Generated outputs
-case-study-*/output/
-*.jsonl
-coverage/
-htmlcov/
+# Gradio
+gradio_cached_examples/
+flagged/

@@ -1,36 +1,51 @@
-name: ARC-AGI Swarm CI
+name: CI — VOLUME Master
+
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: "0 */6 * * *"
 
 jobs:
-  lint-and-test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install aiohttp requests python-dotenv
-      - run: python -m py_compile src/nvidia_swarm/*.py
-      - run: python -m py_compile src/iptv_discovery/*.py
-      - run: python -m py_compile src/benchmarks/*.py
+      - run: pip install ruff black mypy
+      - run: ruff check src/ tests/ agents/
+      - run: black --check src/ tests/ agents/
+      - run: mypy src/ --ignore-missing-imports
 
-  benchmark:
+  test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements.txt
+      - run: pip install pytest pytest-asyncio pytest-cov
+      - run: pytest tests/ -v --cov=src --cov-report=xml
+      - uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+
+  build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install aiohttp requests
-      - run: python src/benchmarks/runner.py || true
+      - run: pip install build
+      - run: python -m build
       - uses: actions/upload-artifact@v4
         with:
-          name: benchmark-results
-          path: data/benchmarks/latest.json
+          name: dist
+          path: dist/
