@@ -1,0 +1,64 @@
+{
+  "paper": "Autogrammar: Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees",
+  "arxiv_id": "2608.05493",
+  "authors": [
+    "Geoff Hulette",
+    "Rahul Kumar",
+    "Felipe R. Monteiro",
+    "Federico Mora",
+    "Robin Salkeld",
+    "Lin Tan",
+    "Serdar Tasiran"
+  ],
+  "affiliation": "Amazon Science",
+  "date": "2026-08-06",
+  "key_results": {
+    "precision": "91-100% on unseen data (5-fold cross-validation)",
+    "speedup": "3.8x execution time reduction via LTL constraints",
+    "dsls_tested": [
+      "CloudWatch Logs Insights",
+      "Dynatrace Query Language",
+      "Datadog Search Syntax"
+    ],
+    "lines_of_code": 2300,
+    "frameworks": [
+      "Strands SDK",
+      "Lark (grammar parser)"
+    ]
+  },
+  "github_repo": "Code linked from arxiv page (URL truncated in search)",
+  "production_implementation": {
+    "library": "transformers-CFG",
+    "repo": "https://github.com/epfl-dlab/transformers-CFG",
+    "license": "MIT",
+    "features": [
+      "EBNF grammar support",
+      "Hugging Face Transformers integration",
+      "Llama 3.1/3.2/3.3 support",
+      "LlamaCPP Python wrapper",
+      "Streaming generation support",
+      "JSON schema to grammar conversion"
+    ],
+    "install": "pip install transformers-cfg"
+  },
+  "our_integration": {
+    "file": "src/nvidia_swarm/grammar_decoder.py",
+    "approach": "EBNF grammar for JSON tool calls + fallback regex",
+    "grammar_rules": [
+      "tool_call",
+      "param_object",
+      "value",
+      "string",
+      "number"
+    ],
+    "tokenizer": "meta-llama/Llama-3.1-8B-Instruct",
+    "status": "Production-ready with fallback"
+  },
+  "how_to_use": [
+    "1. pip install transformers-cfg",
+    "2. from src.nvidia_swarm.grammar_decoder import create_swarm_decoder",
+    "3. decoder = create_swarm_decoder()",
+    "4. decoder.validate('{\"tool\": \"web_search\", \"params\": {...}}')",
+    "5. processor = decoder.get_logits_processor() # for model.generate()"
+  ]
+}
