@@ -6,31 +6,12 @@ on:
 jobs:
   drift:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      LENS_ENABLED: true
-      LENS_SWARM_CONCURRENCY: 4
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-python@v5
         with:
-          bun-version: latest
-      - run: bun install --no-save || npm install
-      - name: Analyze drift
-        run: |
-          node -e "
-          const { LensOrchestrator } = require('./lib/lens-orchestrator');
-          const orch = new LensOrchestrator({ lensDir: './src/_11ty/lenses' });
-          orch.discover().then(() => {
-            return orch.analyze('tectonic', {}, { lastPush: new Date().toISOString(), repo: 'effusion-labs', ciMode: true });
-          }).then(r => {
-            console.log('Health Score:', r.healthScore);
-            console.log('Drift Count:', r.driftCount);
-            console.log('CI Threshold:', r.ciThreshold || 50);
-            const threshold = r.ciThreshold || 50;
-            if (r.healthScore < threshold) {
-              console.error('WARNING: Health score ' + r.healthScore + ' below threshold ' + threshold);
-              process.exit(1);
-            }
-          });
-          
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install --quiet pyyaml
+      - name: Detect lens-profile drift
+        run: python3 .github/scripts/drift-detect.py
